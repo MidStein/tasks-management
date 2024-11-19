@@ -1,5 +1,29 @@
-<h1>{{ task.title }}</h1>
+<h1>Task</h1>
+
+<h2>{{ task.title }}</h2>
 
 <div>{{ task.pub_time }}</div>
 
 <p>{{ task.description }}</p>
+
+<h2>Edit task</h2>
+
+<form action="{% url 'tasks_app:edit' task.id %}" method="post">
+  {% csrf_token %}
+  <div>
+    <label for="title">Title</label>
+    <input id="title" type="text" name="title" value="{{ task.title }}"/>
+  </div>
+
+  <div>
+    <label for="description">Description</label>
+    <textarea
+      id="description"
+      name="description"
+      cols="30"
+      rows="10"
+      >{{ task.description }}</textarea>
+  </div>
+
+  <input type="submit" value="Edit" />
+</form>
