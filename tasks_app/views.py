@@ -1,4 +1,8 @@
+from datetime import datetime
+
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 
 from .models import Task
 
@@ -10,8 +14,13 @@ def index(request):
     return render(request, "tasks_app/index.html", context)
 
 def details(request, id):
-    task = Task.objects.filter(id=id)
+    task = Task.objects.get(id=id)
     context = {
         "task": task
     }
     return render(request, "tasks_app/details.html", context)
+
+def create(request):
+    task = Task(title=request.POST["title"], description=request.POST["description"], pub_time=datetime.now())
+    task.save()
+    return HttpResponseRedirect(reverse("tasks_app:index"))
