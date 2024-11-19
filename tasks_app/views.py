@@ -30,4 +30,8 @@ def edit(request, id):
     task.description = request.POST["description"]
     task.pub_time = timezone.now()
     task.save()
+    return HttpResponseRedirect(reverse("tasks_app:details", args=(task.id,)))
+
+def delete(_, id):
+    Task.objects.get(id=id).delete()
     return HttpResponseRedirect(reverse("tasks_app:index"))

@@ -6,6 +6,11 @@
 
 <p>{{ task.description }}</p>
 
+<form action="{% url 'tasks_app:delete' task.id %}" method="post">
+  {% csrf_token %}
+  <input type="submit" value="Delete">
+</form>
+
 <h2>Edit task</h2>
 
 <form action="{% url 'tasks_app:edit' task.id %}" method="post">
