@@ -1,4 +1,5 @@
-from django.http import HttpResponseRedirect
+from django.contrib.auth import authenticate
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.utils import timezone
@@ -35,3 +36,13 @@ def edit(request, id):
 def delete(_, id):
     Task.objects.get(id=id).delete()
     return HttpResponseRedirect(reverse("tasks_app:index"))
+
+def login_form(request):
+    return render(request, "tasks_app/login-form.html")
+
+def login(request):
+    user = authenticate(username=request.POST["username"], password=request.POST["password"])
+    if user is not None:
+        return HttpResponseRedirect(reverse("tasks_app:index"))
+    else:
+        return HttpResponse("login failed")
