@@ -1,12 +1,18 @@
-<form action="{% url 'tasks_app:login' %}" method="post">
-  {% csrf_token %}
-  <div>
-    <label for="username">Username</label>
-    <input id="username" type="text" name="username" />
-  </div>
-  <div>
-    <label for="password">Password</label>
-    <input id="password" type="password" name="password" />
-  </div>
-  <input type="submit" value="Log in" />
-</form>
+<div id="g_id_onload"
+     data-client_id="473827856453-0idgq4k86h0sg6qe5ksvadfh94u79fub.apps.googleusercontent.com"
+     data-context="signin"
+     data-ux_mode="popup"
+     data-login_uri="{% url 'tasks_app:login' %}"
+     data-auto_prompt="false">
+</div>
+
+<div class="g_id_signin"
+     data-type="standard"
+     data-shape="rectangular"
+     data-theme="outline"
+     data-text="signin_with"
+     data-size="large"
+     data-logo_alignment="left">
+</div>
+
+<script src="https://accounts.google.com/gsi/client" async></script>

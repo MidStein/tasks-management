@@ -4,3 +4,6 @@ db.sqlite3
 .env
 
 placeholder-tasks.py
+users.json
+script.py
+oauth-client.json
